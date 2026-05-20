@@ -27,7 +27,7 @@
     die("Connection failed: " . $conn->connect_error);
 }
 	
-	$sql = "SELECT p.*, u.username FROM posts p JOIN users u ON p.author_id = u.id WHERE p.id = $num";//레코드 검색
+	$sql = "SELECT p.*, u.username FROM posts p JOIN users u ON p.author_id = u.id WHERE p.id = $num";// posts테이블의 author_id와 users 테이블의 id를 조인하여 posts 테이블의 id가 $num과 동일한 튜플을 찾아 posts 테이블의 모든 내용과 users 테이블의 사용자 이름을 select한다.
 	
 	
 	$result =$conn->query($sql);
@@ -37,7 +37,7 @@
     exit;
 }
 	
-	$row = $result->mysqli_fetch_assoc($result); //레코드 가져오기
+	$row = $result->mysqli_fetch_assoc($result); //select된 튜플 중에서 하나의 레코드를 가져온다
 	$author_id = $row["author_id"]; 
 	$name = $row["username"];       
 	$title = $row["title"];
@@ -75,21 +75,22 @@
 		<ul class="buttons">
 			<li><button onclick="location.href='list.php'">목록보기</button></li>
 			<?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $author_id): ?>
-            <li><button onclick="location.href='modify_form.php?id=<?=$num?>'">수정하기</button></li>
-            <li><button onclick="location.href='delete.php?id=<?=$num?>'">삭제하기</button></li>
+            <li><button onclick="location.href='modify_form.php?id=<?=$num?>'">수정하기</button></li>//버튼을 클릭하면 현재 페이지가 modify_form.php로 이동한다.
+            <li><button onclick="location.href='delete.php?id=<?=$num?>'">삭제하기</button></li>//버튼을 클릭하면 현재 페이지가 delete.php로 이동한다.
         <?php endif; ?>
 			<li><button onclick="location.href='index.php'">작성하기</button></li>
 		</ul>
 		<hr>
 		<h3>댓글</h3>
 		<?php
-			$comment_sql = "selet c.*, u.username FROM comments c JOIN users u ON c.author_id = u.id WHERE c.post_id = $num ORDER BY c.id ASC";
-			$commnet_result = $conn->query($commnet_sql);
+			$comment_sql = "select c.*, u.username FROM comments c JOIN users u ON c.author_id = u.id WHERE c.post_id = $num ORDER BY c.id ASC"; 
+            //users 테이블의 id와 comments 테이블의 post_id를 서로 조인한 테이블에서 post_id가 $num인 튜플들을 오름차순으로 정렬하여 comment 테이블의 모든 내용과 users 테이블의 username을 select 
+			$commnet_result = $conn->query($commnet_sql);//sql 쿼리를 실행한다.
 			
-			if ($comment_result->num_rows > 0) {
-	    while($c_row = $comment_result->fetch_assoc()) {
+			if ($comment_result->num_rows > 0) { //만약 select하여 나온 튜플의 수가 0보다 크다면
+	    while($c_row = $comment_result->fetch_assoc()) { 
 		echo "<div style='border-bottom: 1px solid #eee; padding: 5px 0;'>";
-		echo "<b>" . $c_row['username'] . "</b>: " . nl2br($c_row['content']);
+		echo "<b>" . $c_row['username'] . "</b>: " . nl2br($c_row['content']); 
 		echo " <span style='font-size:12px; color:#888;'>(" . $c_row['created_at'] . ")</span>";
 		echo "</div>";
 	    }
