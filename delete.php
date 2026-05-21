@@ -4,13 +4,13 @@
 	error_reporting(E_ALL); //모든 에러를 화면에 표시
 	ini_set('display_errors', 1);   //에러 표시 설정 활성화
 	
-	// 1. 로그인 안 한 상태면 삭제 못 하게 막기
+	// 로그인 안 한 상태면 삭제 못 하게 막기
 	if (!isset($_SESSION['user_id'])) {//로그인 세션이 없다면
 	    echo "<script>alert('로그인이 필요한 서비스입니다.'); location.href='login.php';</script>"; //login.php로 이동
 	    exit; //강제 종료
 	}
 
-	// 2. 넘겨준 글 번호(id) 받기
+	// 넘겨준 글 번호(id) 받기
 	if (isset($_GET["id"])) {
 	    $id = $_GET["id"]; //
 	} else {

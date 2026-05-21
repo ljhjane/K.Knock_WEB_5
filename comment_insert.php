@@ -1,11 +1,8 @@
 <?php
 session_start();
 
-// 디버깅용 에러 켜기
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-// 1. 로그인 안 한 상태면 글 못 쓰게 막기
+// 로그인 안 한 상태면 글 못 쓰게 막기
 if (!isset($_SESSION['user_id'])) {
     echo "
         <script>
@@ -21,7 +18,7 @@ $content = $_POST['content'];
 $author_id = $_SESSION['user_id']; // 로그인 세션에서 유저 고유 고유번호(id) 가져오기
 $content = $_POST["content"];
 
-// 2. DB 연결 
+//DB 연결 
 $servername = "localhost";
 $username = "root";
 $password = ""; 
@@ -38,7 +35,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// 3. 안전하게 쿼리 준비해서 posts 테이블에 넣기
+// comments 테이블에 게시글 번호, 작성자 번호, 댓글 내용, 작성 시각 insert하기
 $sql = "INSERT INTO comments (post_id, author_id, content, created_at) VALUES ($post_id, $author_id, '$content', NOW())";
 
 
