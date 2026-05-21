@@ -1,11 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // MySQL 서버 연결 정보 설정
 $servername = "localhost";
 $username = "root";
-$password = "dlwlgus0717!~";
+$password = "";
 $dbname = "kknock";
 
 // 사용자로부터 입력된 회원가입 정보
@@ -23,11 +21,11 @@ if ($conn->connect_error) {
 $sql = "INSERT INTO users (username, pw) VALUES ('$newUsername', '$newPassword')";
 
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query($sql) === TRUE) {// 가입되면 로그인 페이지로 이동
     echo "
         <script>
         alert('회원가입이 완료되었습니다!');
-        location.href = 'login.php'; // 가입되면 로그인 페이지로 이동
+        location.href = 'login.php'; 
         </script>
     ";
 } else {

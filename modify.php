@@ -1,9 +1,6 @@
 <?php
 	session_start();
 	
-	// 디버깅용 에러 켜기
-	error_reporting(E_ALL);
-	ini_set('display_errors', 1);
 	
 	// 1. 로그인 안 한 상태면 수정 못 하게 막기
 	if (!isset($_SESSION['user_id'])) {
@@ -22,7 +19,7 @@
 	// MySQL 서버 연결 정보 설정
 	$servername = "localhost";
 	$username = "root";
-	$password = "dlwlgus0717!~";
+	$password = "";
 	$dbname = "kknock";
 
 

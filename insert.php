@@ -23,7 +23,7 @@ $content = $_POST["content"];
 // 2. DB 연결 (아까 성공한 정보 그대로!)
 $servername = "localhost";
 $username = "root";
-$password = "dlwlgus0717!~"; 
+$password = ""; 
 $dbname = "kknock";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

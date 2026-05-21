@@ -21,7 +21,7 @@
 	// MySQL 서버 연결 정보 설정
 	$servername = "localhost";
 	$username = "root";
-	$password = "dlwlgus0717!~";
+	$password = "";
 	$dbname = "kknock";
 
 

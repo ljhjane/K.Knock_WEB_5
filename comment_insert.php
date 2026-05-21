@@ -24,7 +24,7 @@ $content = $_POST["content"];
 // 2. DB 연결 
 $servername = "localhost";
 $username = "root";
-$password = "dlwlgus0717!~"; 
+$password = ""; 
 $dbname = "kknock";
 
 if (empty($post_id) || empty($content)) {

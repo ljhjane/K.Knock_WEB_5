@@ -2,12 +2,10 @@
 // MySQL 서버 연결 정보 설정
 session_start();
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 $servername = "localhost";
 $username = "root";
-$pw = "dlwlgus0717!~";
+$pw = "";
 $dbname = "kknock";
 
 // 사용자로부터 입력된 로그인 정보
@@ -27,7 +25,7 @@ $sql = "SELECT * FROM users WHERE username= '$loginUsername' AND pw='$loginPw'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // 로그인 성공 시 해당 유저의 정보(id)를 세션에 저장!
+    // 로그인 성공 시 해당 유저의 정보(id)를 세션에 저장
     $row = $result->fetch_assoc();
     $_SESSION['user_id'] = $row['id'];
     $_SESSION['username'] = $row['username'];
@@ -35,7 +33,7 @@ if ($result->num_rows > 0) {
     echo "
         <script>
         alert('로그인 성공!');
-        location.href = 'list.php'; // 로그인 되면 게시판 목록으로 이동!
+        location.href = 'list.php'; // list.php로 이동
         </script>
     ";
 } else {

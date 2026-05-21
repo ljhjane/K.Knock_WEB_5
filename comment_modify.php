@@ -7,7 +7,7 @@
 	$content = $_POST['content'];
 
 	//db연결하기
-	$conn = new mysqli("localhost", "root", "dlwlgus0717!~", "kknock");
+	$conn = new mysqli("localhost", "root", "", "kknock");
 
 	
 	$sql = "UPDATE comments SET content = '$content' WHERE id = $comment_id";

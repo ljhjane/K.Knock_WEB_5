@@ -1,9 +1,6 @@
 <?php
 	session_start();
 	
-	// 디버깅용 에러 켜기
-	error_reporting(E_ALL);
-	ini_set('display_errors', 1);
 	
 	if(isset($_GET["id"])){ //$_GET["id"] : 레코드 번호
 		$num = $_GET["id"];
@@ -17,7 +14,7 @@
 	// MySQL 서버 연결 정보 설정
 	$servername = "localhost";
 	$username = "root";
-	$password = "dlwlgus0717!~";
+	$password = "";
 	$dbname = "kknock";
 
 
@@ -94,7 +91,7 @@
 		echo " <span style='font-size:12px; color:#888;'>(" . $c_row['created_at'] . ")</span>";
 		echo "</div>";
 	    }
-	} else {
+	} else { //만약 select하여 나온 튜플의 수가 0이라면 = 댓글이 없으면
 	    echo "<p style='color:#888;'>아직 작성된 댓글이 없습니다.</p>";
 	}
 		?>
@@ -102,7 +99,7 @@
 <form method="post" action="comment_insert.php">
     <input type="hidden" name="post_id" value="<?=$num?>">
     
-    <textarea name="content" rows="3" cols="50" placeholder="댓글을 입력하세요..." required></textarea>
+    <textarea name="content" rows="3" cols="50" placeholder="댓글 작성하기" required></textarea>
     <br>
     <button type="submit">댓글 등록</button>
 	</body>
