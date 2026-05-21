@@ -21,7 +21,7 @@ $content = $_POST['content'];
 $author_id = $_SESSION['user_id']; // 로그인 세션에서 유저 고유 고유번호(id) 가져오기
 $content = $_POST["content"];
 
-// 2. DB 연결 (아까 성공한 정보 그대로!)
+// 2. DB 연결 
 $servername = "localhost";
 $username = "root";
 $password = "dlwlgus0717!~"; 
